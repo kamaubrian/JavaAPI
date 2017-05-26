@@ -1,8 +1,8 @@
 package mySqlDatabase;
 
-public class Test extends ConnectDatabase{
+public class EditDatabase extends ConnectDatabase{
 	
-	public Test() throws Exception{
+	public EditDatabase() throws Exception{
 		super();		
 	}
 	public void testConnection() throws Exception{
