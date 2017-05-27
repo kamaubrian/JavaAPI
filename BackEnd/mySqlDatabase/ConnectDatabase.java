@@ -12,10 +12,21 @@ public abstract class ConnectDatabase {
 	protected Connection conn = null;
 	protected ResultSet rst= null;
 	
-	protected ConnectDatabase(){
+	protected ConnectDatabase() throws Exception{
+		String sql;
+		dbConnect();
+		try{
+			stat = conn.createStatement();
+			sql="CREATE TABLE IF NOT EXISTS Credentials(Name VARCHAR(30) NOT NULL,Identification INTEGER"
+					+ " NOT NULL,Username VARCHAR(30) NOT NULL, Password VARCHAR (30) NOT NULL,PRIMARY KEY"
+					+ "(Identification))";
+			stat.addBatch(sql);
+			stat.executeBatch();
+		}catch(Exception ex){
+			System.err.println("Error In Connection"+ex.getMessage());
+		}
 		
-		super();
-		
+		dbDisconnect();
 	}	
 	protected final boolean dbConnect() throws Exception {
 		boolean success = true;
